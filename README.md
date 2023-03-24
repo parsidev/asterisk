@@ -69,7 +69,8 @@ func main() {
 	conn, err := ami.Connect("172.16.202.129:5038",
 		ami.WithAuth("parsa", "password"),
 		ami.WithOnConnected(onConnected), ami.WithOnConnectError(onConnectError),
-		ami.WithSubscribe(ami.SubscribeChan(msg, "FullyBooted", "StatusComplete", "SuccessfulAuth", "SessionTimeout")))
+		ami.WithSubscribe(ami.SubscribeChan(msg, "FullyBooted", "StatusComplete", 
+			"SuccessfulAuth", "SessionTimeout")))
 
 	if err != nil {
 		panic(err)
