@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type OriginateAction struct {
 	ActionID       string
 	Channel        string
@@ -30,10 +28,10 @@ func (a OriginateAction) GetActionID() string {
 func (a *OriginateAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) Originate(channel string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) Originate(channel string, opts ...RequestOption) (res *Response, err error) {
 	req := &OriginateAction{
 		Channel: channel,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

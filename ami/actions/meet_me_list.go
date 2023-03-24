@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type MeetmeListAction struct {
 	ActionID   string
 	Conference string
@@ -16,8 +14,8 @@ func (a MeetmeListAction) GetActionID() string {
 func (a *MeetmeListAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) MeetmeList(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) MeetmeList(opts ...RequestOption) (res *Response, err error) {
 	req := &MeetmeListAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

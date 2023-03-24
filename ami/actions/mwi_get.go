@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type MWIGetAction struct {
 	ActionID string
 	Mailbox  string
@@ -16,10 +14,10 @@ func (a MWIGetAction) GetActionID() string {
 func (a *MWIGetAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) MWIGet(mailbox string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) MWIGet(mailbox string, opts ...RequestOption) (res *Response, err error) {
 	req := &MWIGetAction{
 		Mailbox: mailbox,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

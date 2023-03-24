@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ConfbridgeStopRecordAction struct {
 	ActionID   string
 	Conference string
@@ -16,10 +14,10 @@ func (a ConfbridgeStopRecordAction) GetActionID() string {
 func (a *ConfbridgeStopRecordAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) ConfbridgeStopRecord(conference string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) ConfbridgeStopRecord(conference string, opts ...RequestOption) (res *Response, err error) {
 	req := &ConfbridgeStopRecordAction{
 		Conference: conference,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

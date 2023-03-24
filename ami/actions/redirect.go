@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type RedirectAction struct {
 	ActionID      string
 	Channel       string
@@ -24,13 +22,13 @@ func (a *RedirectAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
 func (cli *Client) Redirect(channel string, exten string, context string, priority int,
-	opts ...message.RequestOption) (res *message.Response, err error) {
+	opts ...RequestOption) (res *Response, err error) {
 	req := &RedirectAction{
 		Channel:  channel,
 		Exten:    exten,
 		Context:  context,
 		Priority: priority,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

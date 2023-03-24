@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type BridgeDestroyAction struct {
 	ActionID       string
 	BridgeUniqueid string
@@ -16,10 +14,10 @@ func (a BridgeDestroyAction) GetActionID() string {
 func (a *BridgeDestroyAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) BridgeDestroy(bridgeUniqueid string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) BridgeDestroy(bridgeUniqueid string, opts ...RequestOption) (res *Response, err error) {
 	req := &BridgeDestroyAction{
 		BridgeUniqueid: bridgeUniqueid,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

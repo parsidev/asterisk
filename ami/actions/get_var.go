@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type GetvarAction struct {
 	ActionID string
 	Channel  string
@@ -17,10 +15,10 @@ func (a GetvarAction) GetActionID() string {
 func (a *GetvarAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) Getvar(variable string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) Getvar(variable string, opts ...RequestOption) (res *Response, err error) {
 	req := &GetvarAction{
 		Variable: variable,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

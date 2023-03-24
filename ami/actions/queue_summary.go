@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type QueueSummaryAction struct {
 	ActionID string
 	Queue    string
@@ -16,8 +14,8 @@ func (a QueueSummaryAction) GetActionID() string {
 func (a *QueueSummaryAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) QueueSummary(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) QueueSummary(opts ...RequestOption) (res *Response, err error) {
 	req := &QueueSummaryAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

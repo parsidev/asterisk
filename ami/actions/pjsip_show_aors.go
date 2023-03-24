@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PJSIPShowAorsAction struct {
 	ActionID string
 }
@@ -16,8 +14,8 @@ func (a *PJSIPShowAorsAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
 
-func (cli *Client) PJSIPShowAors(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PJSIPShowAors(opts ...RequestOption) (res *Response, err error) {
 	req := &PJSIPShowAorsAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

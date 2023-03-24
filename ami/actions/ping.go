@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PingAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a PingAction) GetActionID() string {
 func (a *PingAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) Ping(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) Ping(opts ...RequestOption) (res *Response, err error) {
 	req := &PingAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

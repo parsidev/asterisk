@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type LoginAction struct {
 	ActionID string
 	UserName string
@@ -17,10 +15,10 @@ func (a LoginAction) GetActionID() string {
 func (a *LoginAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) Login(userName string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) Login(userName string, opts ...RequestOption) (res *Response, err error) {
 	req := &LoginAction{
 		UserName: userName,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

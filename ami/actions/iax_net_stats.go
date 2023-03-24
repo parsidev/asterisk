@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type IAXnetstatsAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a IAXnetstatsAction) GetActionID() string {
 func (a *IAXnetstatsAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) IAXnetstats(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) IAXnetstats(opts ...RequestOption) (res *Response, err error) {
 	req := &IAXnetstatsAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

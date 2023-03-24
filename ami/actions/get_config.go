@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type GetConfigAction struct {
 	ActionID string
 	FileName string
@@ -18,10 +16,10 @@ func (a GetConfigAction) GetActionID() string {
 func (a *GetConfigAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) GetConfig(fileName string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) GetConfig(fileName string, opts ...RequestOption) (res *Response, err error) {
 	req := &GetConfigAction{
 		FileName: fileName,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

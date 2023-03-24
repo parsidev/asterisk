@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type MessageSendAction struct {
 	ActionID   string
 	To         string
@@ -20,10 +18,10 @@ func (a MessageSendAction) GetActionID() string {
 func (a *MessageSendAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) MessageSend(to string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) MessageSend(to string, opts ...RequestOption) (res *Response, err error) {
 	req := &MessageSendAction{
 		To: to,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

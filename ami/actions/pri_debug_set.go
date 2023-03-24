@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PRIDebugSetAction struct {
 	ActionID string
 	Span     string
@@ -17,11 +15,11 @@ func (a PRIDebugSetAction) GetActionID() string {
 func (a *PRIDebugSetAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PRIDebugSet(span string, level string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PRIDebugSet(span string, level string, opts ...RequestOption) (res *Response, err error) {
 	req := &PRIDebugSetAction{
 		Span:  span,
 		Level: level,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

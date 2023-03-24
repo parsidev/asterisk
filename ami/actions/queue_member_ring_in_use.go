@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type QueueMemberRingInUseAction struct {
 	ActionID  string
 	Interface string
@@ -18,11 +16,11 @@ func (a QueueMemberRingInUseAction) GetActionID() string {
 func (a *QueueMemberRingInUseAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) QueueMemberRingInUse(iface string, ringInUse string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) QueueMemberRingInUse(iface string, ringInUse string, opts ...RequestOption) (res *Response, err error) {
 	req := &QueueMemberRingInUseAction{
 		Interface: iface,
 		RingInUse: ringInUse,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

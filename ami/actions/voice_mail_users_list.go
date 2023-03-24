@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type VoicemailUsersListAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a VoicemailUsersListAction) GetActionID() string {
 func (a *VoicemailUsersListAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) VoicemailUsersList(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) VoicemailUsersList(opts ...RequestOption) (res *Response, err error) {
 	req := &VoicemailUsersListAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

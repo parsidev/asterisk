@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PRIShowSpansAction struct {
 	ActionID string
 	Span     string
@@ -16,8 +14,8 @@ func (a PRIShowSpansAction) GetActionID() string {
 func (a *PRIShowSpansAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PRIShowSpans(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PRIShowSpans(opts ...RequestOption) (res *Response, err error) {
 	req := &PRIShowSpansAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

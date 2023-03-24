@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PRIDebugFileUnsetAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a PRIDebugFileUnsetAction) GetActionID() string {
 func (a *PRIDebugFileUnsetAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PRIDebugFileUnset(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PRIDebugFileUnset(opts ...RequestOption) (res *Response, err error) {
 	req := &PRIDebugFileUnsetAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

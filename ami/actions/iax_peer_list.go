@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type IAXpeerlistAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a IAXpeerlistAction) GetActionID() string {
 func (a *IAXpeerlistAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) IAXpeerlist(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) IAXpeerlist(opts ...RequestOption) (res *Response, err error) {
 	req := &IAXpeerlistAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

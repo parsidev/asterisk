@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type MuteAudioAction struct {
 	ActionID  string
 	Channel   string
@@ -18,12 +16,12 @@ func (a MuteAudioAction) GetActionID() string {
 func (a *MuteAudioAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) MuteAudio(channel string, direction string, state string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) MuteAudio(channel string, direction string, state string, opts ...RequestOption) (res *Response, err error) {
 	req := &MuteAudioAction{
 		Channel:   channel,
 		Direction: direction,
 		State:     state,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

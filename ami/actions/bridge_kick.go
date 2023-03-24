@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type BridgeKickAction struct {
 	ActionID       string
 	BridgeUniqueid string
@@ -17,10 +15,10 @@ func (a BridgeKickAction) GetActionID() string {
 func (a *BridgeKickAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) BridgeKick(channel string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) BridgeKick(channel string, opts ...RequestOption) (res *Response, err error) {
 	req := &BridgeKickAction{
 		Channel: channel,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ExtensionStateAction struct {
 	ActionID string
 	Exten    string
@@ -17,11 +15,11 @@ func (a ExtensionStateAction) GetActionID() string {
 func (a *ExtensionStateAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) ExtensionState(exten string, context string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) ExtensionState(exten string, context string, opts ...RequestOption) (res *Response, err error) {
 	req := &ExtensionStateAction{
 		Exten:   exten,
 		Context: context,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

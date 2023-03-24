@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type SIPnotifyAction struct {
 	ActionID string
 	Channel  string
@@ -18,11 +16,11 @@ func (a SIPnotifyAction) GetActionID() string {
 func (a *SIPnotifyAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) SIPnotify(channel string, variable string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) SIPnotify(channel string, variable string, opts ...RequestOption) (res *Response, err error) {
 	req := &SIPnotifyAction{
 		Channel:  channel,
 		Variable: variable,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type QueueResetAction struct {
 	ActionID string
 	Queue    string
@@ -16,8 +14,8 @@ func (a QueueResetAction) GetActionID() string {
 func (a *QueueResetAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) QueueReset(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) QueueReset(opts ...RequestOption) (res *Response, err error) {
 	req := &QueueResetAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

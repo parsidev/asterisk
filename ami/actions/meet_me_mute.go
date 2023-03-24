@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type MeetmeMuteAction struct {
 	ActionID string
 	Meetme   string
@@ -17,11 +15,11 @@ func (a MeetmeMuteAction) GetActionID() string {
 func (a *MeetmeMuteAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) MeetmeMute(meetme string, usernum string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) MeetmeMute(meetme string, usernum string, opts ...RequestOption) (res *Response, err error) {
 	req := &MeetmeMuteAction{
 		Meetme:  meetme,
 		Usernum: usernum,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

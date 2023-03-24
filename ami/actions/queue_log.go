@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type QueueLogAction struct {
 	ActionID  string
 	Queue     string
@@ -20,11 +18,11 @@ func (a QueueLogAction) GetActionID() string {
 func (a *QueueLogAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) QueueLog(queue string, event string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) QueueLog(queue string, event string, opts ...RequestOption) (res *Response, err error) {
 	req := &QueueLogAction{
 		Queue: queue,
 		Event: event,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

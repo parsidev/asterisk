@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PresenceStateAction struct {
 	ActionID string
 	Provider string
@@ -16,10 +14,10 @@ func (a PresenceStateAction) GetActionID() string {
 func (a *PresenceStateAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PresenceState(provider string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PresenceState(provider string, opts ...RequestOption) (res *Response, err error) {
 	req := &PresenceStateAction{
 		Provider: provider,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

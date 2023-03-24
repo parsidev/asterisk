@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type SIPshowregistryAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a SIPshowregistryAction) GetActionID() string {
 func (a *SIPshowregistryAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) SIPshowregistry(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) SIPshowregistry(opts ...RequestOption) (res *Response, err error) {
 	req := &SIPshowregistryAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

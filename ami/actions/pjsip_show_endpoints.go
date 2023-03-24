@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PJSIPShowEndpointsAction struct {
 	ActionID string
 }
@@ -16,8 +14,8 @@ func (a *PJSIPShowEndpointsAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
 
-func (cli *Client) PJSIPShowEndpoints(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PJSIPShowEndpoints(opts ...RequestOption) (res *Response, err error) {
 	req := &PJSIPShowEndpointsAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

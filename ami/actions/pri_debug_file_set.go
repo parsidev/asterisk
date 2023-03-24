@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PRIDebugFileSetAction struct {
 	ActionID string
 	File     string
@@ -16,10 +14,10 @@ func (a PRIDebugFileSetAction) GetActionID() string {
 func (a *PRIDebugFileSetAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PRIDebugFileSet(file string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PRIDebugFileSet(file string, opts ...RequestOption) (res *Response, err error) {
 	req := &PRIDebugFileSetAction{
 		File: file,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

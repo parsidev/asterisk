@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type DAHDIRestartAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a DAHDIRestartAction) GetActionID() string {
 func (a *DAHDIRestartAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) DAHDIRestart(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) DAHDIRestart(opts ...RequestOption) (res *Response, err error) {
 	req := &DAHDIRestartAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

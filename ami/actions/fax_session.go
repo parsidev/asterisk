@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type FAXSessionAction struct {
 	ActionID      string
 	SessionNumber string
@@ -16,10 +14,10 @@ func (a FAXSessionAction) GetActionID() string {
 func (a *FAXSessionAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) FAXSession(sessionNumber string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) FAXSession(sessionNumber string, opts ...RequestOption) (res *Response, err error) {
 	req := &FAXSessionAction{
 		SessionNumber: sessionNumber,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

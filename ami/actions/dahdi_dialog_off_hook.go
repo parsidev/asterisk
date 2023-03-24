@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type DAHDIDialOffhookAction struct {
 	ActionID     string
 	DAHDIChannel string
@@ -17,11 +15,11 @@ func (a DAHDIDialOffhookAction) GetActionID() string {
 func (a *DAHDIDialOffhookAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) DAHDIDialOffhook(dAHDIChannel string, number string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) DAHDIDialOffhook(dAHDIChannel string, number string, opts ...RequestOption) (res *Response, err error) {
 	req := &DAHDIDialOffhookAction{
 		DAHDIChannel: dAHDIChannel,
 		Number:       number,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

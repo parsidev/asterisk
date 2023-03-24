@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ModuleLoadAction struct {
 	ActionID string
 	Module   string
@@ -17,10 +15,10 @@ func (a ModuleLoadAction) GetActionID() string {
 func (a *ModuleLoadAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) ModuleLoad(loadType string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) ModuleLoad(loadType string, opts ...RequestOption) (res *Response, err error) {
 	req := &ModuleLoadAction{
 		LoadType: loadType,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

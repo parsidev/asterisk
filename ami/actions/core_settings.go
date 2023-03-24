@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type CoreSettingsAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a CoreSettingsAction) GetActionID() string {
 func (a *CoreSettingsAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) CoreSettings(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) CoreSettings(opts ...RequestOption) (res *Response, err error) {
 	req := &CoreSettingsAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

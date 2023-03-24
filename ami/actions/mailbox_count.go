@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type MailboxCountAction struct {
 	ActionID string
 	Mailbox  string
@@ -16,10 +14,10 @@ func (a MailboxCountAction) GetActionID() string {
 func (a *MailboxCountAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) MailboxCount(mailbox string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) MailboxCount(mailbox string, opts ...RequestOption) (res *Response, err error) {
 	req := &MailboxCountAction{
 		Mailbox: mailbox,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type SorceryMemoryCacheExpireObjectAction struct {
 	ActionID string
 	Cache    string
@@ -17,11 +15,11 @@ func (a SorceryMemoryCacheExpireObjectAction) GetActionID() string {
 func (a *SorceryMemoryCacheExpireObjectAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) SorceryMemoryCacheExpireObject(cache string, object string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) SorceryMemoryCacheExpireObject(cache string, object string, opts ...RequestOption) (res *Response, err error) {
 	req := &SorceryMemoryCacheExpireObjectAction{
 		Cache:  cache,
 		Object: object,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

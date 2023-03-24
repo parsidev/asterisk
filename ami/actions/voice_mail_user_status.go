@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type VoicemailUserStatusAction struct {
 	ActionID string
 	Context  string
@@ -17,11 +15,11 @@ func (a VoicemailUserStatusAction) GetActionID() string {
 func (a *VoicemailUserStatusAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) VoicemailUserStatus(context string, mailbox string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) VoicemailUserStatus(context string, mailbox string, opts ...RequestOption) (res *Response, err error) {
 	req := &VoicemailUserStatusAction{
 		Context: context,
 		Mailbox: mailbox,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

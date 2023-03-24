@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PJSIPNotifyAction struct {
 	ActionID string
 	Endpoint string
@@ -19,10 +17,10 @@ func (a PJSIPNotifyAction) GetActionID() string {
 func (a *PJSIPNotifyAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PJSIPNotify(variable string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PJSIPNotify(variable string, opts ...RequestOption) (res *Response, err error) {
 	req := &PJSIPNotifyAction{
 		Variable: variable,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

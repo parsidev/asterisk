@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type CoreShowChannelsAction struct {
 	ActionID string
 }
@@ -16,8 +14,8 @@ func (a *CoreShowChannelsAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
 
-func (cli *Client) CoreShowChannels(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) CoreShowChannels(opts ...RequestOption) (res *Response, err error) {
 	req := &CoreShowChannelsAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

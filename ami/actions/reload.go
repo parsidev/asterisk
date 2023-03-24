@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ReloadAction struct {
 	ActionID string
 	Module   string
@@ -16,8 +14,8 @@ func (a ReloadAction) GetActionID() string {
 func (a *ReloadAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) Reload(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) Reload(opts ...RequestOption) (res *Response, err error) {
 	req := &ReloadAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

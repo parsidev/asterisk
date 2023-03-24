@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type UpdateConfigAction struct {
 	ActionID                 string
 	SrcFileName              string
@@ -26,11 +24,11 @@ func (a UpdateConfigAction) GetActionID() string {
 func (a *UpdateConfigAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) UpdateConfig(srcFileName string, dstFileName string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) UpdateConfig(srcFileName string, dstFileName string, opts ...RequestOption) (res *Response, err error) {
 	req := &UpdateConfigAction{
 		SrcFileName: srcFileName,
 		DstFileName: dstFileName,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type AGIAction struct {
 	ActionID  string
 	Channel   string
@@ -18,11 +16,11 @@ func (a AGIAction) GetActionID() string {
 func (a *AGIAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) AGI(channel string, command string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) AGI(channel string, command string, opts ...RequestOption) (res *Response, err error) {
 	req := &AGIAction{
 		Channel: channel,
 		Command: command,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

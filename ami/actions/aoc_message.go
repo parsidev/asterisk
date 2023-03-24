@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type AOCMessageAction struct {
 	ActionID                  string
 	Channel                   string
@@ -29,12 +27,12 @@ func (a AOCMessageAction) GetActionID() string {
 func (a *AOCMessageAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) AOCMessage(channel string, msgType string, chargeType string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) AOCMessage(channel string, msgType string, chargeType string, opts ...RequestOption) (res *Response, err error) {
 	req := &AOCMessageAction{
 		Channel:    channel,
 		MsgType:    msgType,
 		ChargeType: chargeType,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

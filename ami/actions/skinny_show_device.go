@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type SKINNYshowdeviceAction struct {
 	ActionID string
 	Device   string
@@ -16,10 +14,10 @@ func (a SKINNYshowdeviceAction) GetActionID() string {
 func (a *SKINNYshowdeviceAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) SKINNYshowdevice(device string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) SKINNYshowdevice(device string, opts ...RequestOption) (res *Response, err error) {
 	req := &SKINNYshowdeviceAction{
 		Device: device,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

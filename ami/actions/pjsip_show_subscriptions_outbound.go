@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PJSIPShowSubscriptionsOutboundAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a PJSIPShowSubscriptionsOutboundAction) GetActionID() string {
 func (a *PJSIPShowSubscriptionsOutboundAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PJSIPShowSubscriptionsOutbound(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PJSIPShowSubscriptionsOutbound(opts ...RequestOption) (res *Response, err error) {
 	req := &PJSIPShowSubscriptionsOutboundAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

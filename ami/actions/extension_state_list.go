@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ExtensionStateListAction struct {
 	ActionID string
 }
@@ -16,8 +14,8 @@ func (a *ExtensionStateListAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
 
-func (cli *Client) ExtensionStateList(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) ExtensionStateList(opts ...RequestOption) (res *Response, err error) {
 	req := &ExtensionStateListAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

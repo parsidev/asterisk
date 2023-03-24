@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type BridgeListAction struct {
 	ActionID   string
 	BridgeType string
@@ -16,8 +14,8 @@ func (a BridgeListAction) GetActionID() string {
 func (a *BridgeListAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) BridgeList(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) BridgeList(opts ...RequestOption) (res *Response, err error) {
 	req := &BridgeListAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

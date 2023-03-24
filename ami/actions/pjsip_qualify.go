@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PJSIPQualifyAction struct {
 	ActionID string
 	Endpoint string
@@ -16,10 +14,10 @@ func (a PJSIPQualifyAction) GetActionID() string {
 func (a *PJSIPQualifyAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PJSIPQualify(endpoint string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PJSIPQualify(endpoint string, opts ...RequestOption) (res *Response, err error) {
 	req := &PJSIPQualifyAction{
 		Endpoint: endpoint,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

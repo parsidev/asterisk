@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type UserEventAction struct {
 	ActionID  string
 	UserEvent string
@@ -18,10 +16,10 @@ func (a UserEventAction) GetActionID() string {
 func (a *UserEventAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) UserEvent(userEvent string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) UserEvent(userEvent string, opts ...RequestOption) (res *Response, err error) {
 	req := &UserEventAction{
 		UserEvent: userEvent,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

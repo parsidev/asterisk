@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PJSIPShowRegistrationInboundContactStatusesAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a PJSIPShowRegistrationInboundContactStatusesAction) GetActionID() string 
 func (a *PJSIPShowRegistrationInboundContactStatusesAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PJSIPShowRegistrationInboundContactStatuses(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PJSIPShowRegistrationInboundContactStatuses(opts ...RequestOption) (res *Response, err error) {
 	req := &PJSIPShowRegistrationInboundContactStatusesAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type SKINNYlinesAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a SKINNYlinesAction) GetActionID() string {
 func (a *SKINNYlinesAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) SKINNYlines(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) SKINNYlines(opts ...RequestOption) (res *Response, err error) {
 	req := &SKINNYlinesAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

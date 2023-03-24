@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type FilterListAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a FilterListAction) GetActionID() string {
 func (a *FilterListAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) FilterList(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) FilterList(opts ...RequestOption) (res *Response, err error) {
 	req := &FilterListAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type StatusAction struct {
 	ActionID     string
 	Channel      string
@@ -19,8 +17,8 @@ func (a *StatusAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
 
-func (cli *Client) Status(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) Status(opts ...RequestOption) (res *Response, err error) {
 	req := &StatusAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

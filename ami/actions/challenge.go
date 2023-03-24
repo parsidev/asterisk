@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ChallengeAction struct {
 	ActionID string
 	AuthType string
@@ -16,10 +14,10 @@ func (a ChallengeAction) GetActionID() string {
 func (a *ChallengeAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) Challenge(authType string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) Challenge(authType string, opts ...RequestOption) (res *Response, err error) {
 	req := &ChallengeAction{
 		AuthType: authType,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

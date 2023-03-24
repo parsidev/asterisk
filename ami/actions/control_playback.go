@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ControlPlaybackAction struct {
 	ActionID string
 	Channel  string
@@ -17,11 +15,11 @@ func (a ControlPlaybackAction) GetActionID() string {
 func (a *ControlPlaybackAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) ControlPlayback(channel string, control string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) ControlPlayback(channel string, control string, opts ...RequestOption) (res *Response, err error) {
 	req := &ControlPlaybackAction{
 		Channel: channel,
 		Control: control,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

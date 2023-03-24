@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type CoreStatusAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a CoreStatusAction) GetActionID() string {
 func (a *CoreStatusAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) CoreStatus(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) CoreStatus(opts ...RequestOption) (res *Response, err error) {
 	req := &CoreStatusAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

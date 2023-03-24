@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type LocalOptimizeAwayAction struct {
 	ActionID string
 	Channel  string
@@ -16,10 +14,10 @@ func (a LocalOptimizeAwayAction) GetActionID() string {
 func (a *LocalOptimizeAwayAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) LocalOptimizeAway(channel string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) LocalOptimizeAway(channel string, opts ...RequestOption) (res *Response, err error) {
 	req := &LocalOptimizeAwayAction{
 		Channel: channel,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

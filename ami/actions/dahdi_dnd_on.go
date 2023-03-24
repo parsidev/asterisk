@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type DAHDIDNDonAction struct {
 	ActionID     string
 	DAHDIChannel string
@@ -16,10 +14,10 @@ func (a DAHDIDNDonAction) GetActionID() string {
 func (a *DAHDIDNDonAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) DAHDIDNDon(dAHDIChannel string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) DAHDIDNDon(dAHDIChannel string, opts ...RequestOption) (res *Response, err error) {
 	req := &DAHDIDNDonAction{
 		DAHDIChannel: dAHDIChannel,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

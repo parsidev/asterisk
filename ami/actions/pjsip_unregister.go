@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PJSIPUnregisterAction struct {
 	ActionID     string
 	Registration string
@@ -16,10 +14,10 @@ func (a PJSIPUnregisterAction) GetActionID() string {
 func (a *PJSIPUnregisterAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PJSIPUnregister(registration string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PJSIPUnregister(registration string, opts ...RequestOption) (res *Response, err error) {
 	req := &PJSIPUnregisterAction{
 		Registration: registration,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

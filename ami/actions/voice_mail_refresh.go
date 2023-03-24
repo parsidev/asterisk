@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type VoicemailRefreshAction struct {
 	ActionID string
 	Context  string
@@ -17,8 +15,8 @@ func (a VoicemailRefreshAction) GetActionID() string {
 func (a *VoicemailRefreshAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) VoicemailRefresh(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) VoicemailRefresh(opts ...RequestOption) (res *Response, err error) {
 	req := &VoicemailRefreshAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

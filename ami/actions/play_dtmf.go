@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type PlayDTMFAction struct {
 	ActionID string
 	Channel  string
@@ -19,11 +17,11 @@ func (a PlayDTMFAction) GetActionID() string {
 func (a *PlayDTMFAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) PlayDTMF(channel string, digit string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) PlayDTMF(channel string, digit string, opts ...RequestOption) (res *Response, err error) {
 	req := &PlayDTMFAction{
 		Channel: channel,
 		Digit:   digit,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

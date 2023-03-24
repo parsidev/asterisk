@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type SIPqualifypeerAction struct {
 	ActionID string
 	Peer     string
@@ -16,10 +14,10 @@ func (a SIPqualifypeerAction) GetActionID() string {
 func (a *SIPqualifypeerAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) SIPqualifypeer(peer string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) SIPqualifypeer(peer string, opts ...RequestOption) (res *Response, err error) {
 	req := &SIPqualifypeerAction{
 		Peer: peer,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

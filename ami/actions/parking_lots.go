@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ParkinglotsAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a ParkinglotsAction) GetActionID() string {
 func (a *ParkinglotsAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) Parkinglots(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) Parkinglots(opts ...RequestOption) (res *Response, err error) {
 	req := &ParkinglotsAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

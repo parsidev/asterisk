@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type LoggerRotateAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a LoggerRotateAction) GetActionID() string {
 func (a *LoggerRotateAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) LoggerRotate(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) LoggerRotate(opts ...RequestOption) (res *Response, err error) {
 	req := &LoggerRotateAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

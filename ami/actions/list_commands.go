@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ListCommandsAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a ListCommandsAction) GetActionID() string {
 func (a *ListCommandsAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) ListCommands(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) ListCommands(opts ...RequestOption) (res *Response, err error) {
 	req := &ListCommandsAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

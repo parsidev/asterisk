@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type IAXregistryAction struct {
 	ActionID string
 }
@@ -15,8 +13,8 @@ func (a IAXregistryAction) GetActionID() string {
 func (a *IAXregistryAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) IAXregistry(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) IAXregistry(opts ...RequestOption) (res *Response, err error) {
 	req := &IAXregistryAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

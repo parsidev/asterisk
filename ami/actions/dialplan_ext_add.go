@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type DialplanExtensionAddAction struct {
 	ActionID        string
 	Context         string
@@ -22,13 +20,13 @@ func (a *DialplanExtensionAddAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
 func (cli *Client) DialplanExtensionAdd(context string, extension string, priority int, application string,
-	opts ...message.RequestOption) (res *message.Response, err error) {
+	opts ...RequestOption) (res *Response, err error) {
 	req := &DialplanExtensionAddAction{
 		Context:     context,
 		Extension:   extension,
 		Priority:    priority,
 		Application: application,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

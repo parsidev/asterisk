@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type SorceryMemoryCacheStaleAction struct {
 	ActionID string
 	Cache    string
@@ -16,10 +14,10 @@ func (a SorceryMemoryCacheStaleAction) GetActionID() string {
 func (a *SorceryMemoryCacheStaleAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) SorceryMemoryCacheStale(cache string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) SorceryMemoryCacheStale(cache string, opts ...RequestOption) (res *Response, err error) {
 	req := &SorceryMemoryCacheStaleAction{
 		Cache: cache,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

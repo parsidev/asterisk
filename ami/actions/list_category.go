@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ListCategoriesAction struct {
 	ActionID string
 	FileName string
@@ -16,10 +14,10 @@ func (a ListCategoriesAction) GetActionID() string {
 func (a *ListCategoriesAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) ListCategories(fileName string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) ListCategories(fileName string, opts ...RequestOption) (res *Response, err error) {
 	req := &ListCategoriesAction{
 		FileName: fileName,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

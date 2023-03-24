@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type AgentLogoffAction struct {
 	ActionID string
 	Agent    string
@@ -17,10 +15,10 @@ func (a AgentLogoffAction) GetActionID() string {
 func (a *AgentLogoffAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) AgentLogoff(agent string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) AgentLogoff(agent string, opts ...RequestOption) (res *Response, err error) {
 	req := &AgentLogoffAction{
 		Agent: agent,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

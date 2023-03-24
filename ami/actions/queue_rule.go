@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type QueueRuleAction struct {
 	ActionID string
 	Rule     string
@@ -16,8 +14,8 @@ func (a QueueRuleAction) GetActionID() string {
 func (a *QueueRuleAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) QueueRule(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) QueueRule(opts ...RequestOption) (res *Response, err error) {
 	req := &QueueRuleAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

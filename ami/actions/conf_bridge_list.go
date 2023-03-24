@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type ConfbridgeListAction struct {
 	ActionID   string
 	Conference string
@@ -16,10 +14,10 @@ func (a ConfbridgeListAction) GetActionID() string {
 func (a *ConfbridgeListAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) ConfbridgeList(conference string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) ConfbridgeList(conference string, opts ...RequestOption) (res *Response, err error) {
 	req := &ConfbridgeListAction{
 		Conference: conference,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

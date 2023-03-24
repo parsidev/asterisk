@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type MixMonitorAction struct {
 	ActionID string
 	Channel  string
@@ -19,10 +17,10 @@ func (a MixMonitorAction) GetActionID() string {
 func (a *MixMonitorAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) MixMonitor(channel string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) MixMonitor(channel string, opts ...RequestOption) (res *Response, err error) {
 	req := &MixMonitorAction{
 		Channel: channel,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type SIPpeerstatusAction struct {
 	ActionID string
 	Peer     string
@@ -16,8 +14,8 @@ func (a SIPpeerstatusAction) GetActionID() string {
 func (a *SIPpeerstatusAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) SIPpeerstatus(opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) SIPpeerstatus(opts ...RequestOption) (res *Response, err error) {
 	req := &SIPpeerstatusAction{}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

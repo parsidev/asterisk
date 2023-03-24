@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type StopMonitorAction struct {
 	ActionID string
 	Channel  string
@@ -16,10 +14,10 @@ func (a StopMonitorAction) GetActionID() string {
 func (a *StopMonitorAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) StopMonitor(channel string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) StopMonitor(channel string, opts ...RequestOption) (res *Response, err error) {
 	req := &StopMonitorAction{
 		Channel: channel,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }

@@ -1,7 +1,5 @@
 package actions
 
-import "github.com/parsidev/asterisk/ami/message"
-
 type BlindTransferAction struct {
 	ActionID string
 	Channel  string
@@ -18,10 +16,10 @@ func (a BlindTransferAction) GetActionID() string {
 func (a *BlindTransferAction) SetActionID(actionID string) {
 	a.ActionID = actionID
 }
-func (cli *Client) BlindTransfer(channel string, opts ...message.RequestOption) (res *message.Response, err error) {
+func (cli *Client) BlindTransfer(channel string, opts ...RequestOption) (res *Response, err error) {
 	req := &BlindTransferAction{
 		Channel: channel,
 	}
-	res = &message.Response{}
+	res = &Response{}
 	return res, cli.Action(req, res, opts...)
 }
