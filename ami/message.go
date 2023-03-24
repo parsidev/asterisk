@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/mitchellh/mapstructure"
-	"github.com/parsidev/asterisk/ami/message/actions"
+	"github.com/parsidev/asterisk/ami/actions"
 )
 
 type MessageType string

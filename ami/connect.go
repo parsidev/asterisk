@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-multierror"
-	"github.com/parsidev/asterisk/ami/message/actions"
+	"github.com/parsidev/asterisk/ami/actions"
 	er "github.com/pkg/errors"
 	"go.uber.org/zap"
 	"golang.org/x/sync/errgroup"
