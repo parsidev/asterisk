@@ -4,13 +4,12 @@ import (
 	"context"
 	"time"
 
-	"github.com/parsidev/asterisk/ami/message"
 	"github.com/pkg/errors"
 )
 
 type requestOptions struct {
 	Timeout    time.Duration
-	OnComplete func(ctx context.Context, msg *message.Message, err error)
+	OnComplete func(ctx context.Context, msg *Message, err error)
 }
 type RequestOption func(o *requestOptions) error
 
@@ -21,20 +20,20 @@ func RequestTimeout(d time.Duration) RequestOption {
 	}
 }
 
-func RequestResponseCallback(cb func(ctx context.Context, msg *message.Message, err error)) RequestOption {
+func RequestResponseCallback(cb func(ctx context.Context, msg *Message, err error)) RequestOption {
 	return func(o *requestOptions) error {
 		o.OnComplete = cb
 		return nil
 	}
 }
 
-func (c *Conn) Request(r interface{}, opts ...RequestOption) (resp *message.Message, err error) {
-	var msg *message.Message
-	msg, err = message.ConvertToMessage(r)
+func (c *Conn) Request(r interface{}, opts ...RequestOption) (resp *Message, err error) {
+	var msg *Message
+	msg, err = ConvertToMessage(r)
 	if err != nil {
 		return nil, err
 	}
-	if msg.Type != message.MessageTypeAction {
+	if msg.Type != MessageTypeAction {
 		return nil, errors.Errorf("can only request action: %v", msg.Type)
 	}
 

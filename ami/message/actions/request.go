@@ -1,15 +1,13 @@
-package message
-
-import "github.com/parsidev/asterisk/ami/message/actions"
+package actions
 
 type Request struct {
-	Action   actions.Action
+	Action   Action
 	Response *Response
 }
 
 type RequestOption func(r *Request) error
 
-func RequestBuilder(act actions.Action, res interface{}, opts ...RequestOption) (r *Request, err error) {
+func RequestBuilder(act Action, res interface{}, opts ...RequestOption) (r *Request, err error) {
 	r = &Request{
 		Action: act,
 	}
