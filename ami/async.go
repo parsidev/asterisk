@@ -2,14 +2,12 @@ package ami
 
 import (
 	"context"
-
-	"github.com/parsidev/asterisk/ami/message"
 )
 
 type asyncMsg struct {
 	id     string
-	msg    *message.Message
-	resp   *message.Message
+	msg    *Message
+	resp   *Message
 	err    error
 	result chan *asyncMsg
 	cb     func(v *asyncMsg)

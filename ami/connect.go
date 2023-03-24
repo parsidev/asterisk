@@ -13,7 +13,6 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-multierror"
-	"github.com/parsidev/asterisk/ami/message"
 	"github.com/parsidev/asterisk/ami/message/actions"
 	er "github.com/pkg/errors"
 	"go.uber.org/zap"
@@ -30,7 +29,7 @@ type Conn struct {
 	reader  *bufio.Reader
 	nextID  func() string
 	pending chan *asyncMsg
-	recv    chan *message.Message
+	recv    chan *Message
 	ctx     context.Context
 	closer  context.CancelFunc
 	closed  bool
@@ -49,7 +48,7 @@ func (c *Conn) read(ctx context.Context) (err error) {
 		log.Debug("done read loop")
 	}()
 	for {
-		msg := &message.Message{}
+		msg := &Message{}
 
 		if err = msg.Read(c.reader); err != nil && !errors.Is(err, os.ErrDeadlineExceeded) {
 			return
@@ -107,7 +106,7 @@ func (c *Conn) loop(ctx context.Context) (err error) {
 			c.onSend(async)
 		case msg := <-c.recv:
 			// received
-			if msg.Type == message.MessageTypeResponse {
+			if msg.Type == MessageTypeResponse {
 				id := msg.AttrString(attrActionID)
 				if id != "" {
 					async := ids[id]
@@ -139,7 +138,7 @@ func (c *Conn) onSend(msg *asyncMsg) {
 	}
 }
 
-func (c *Conn) onRecv(msg *message.Message) {
+func (c *Conn) onRecv(msg *Message) {
 	subs := c.subs
 	for _, v := range subs {
 		if v.unsub || !v.onRecv {
@@ -276,7 +275,7 @@ func (c *Conn) connect(conn net.Conn) (err error) {
 
 	conf := c.conf
 	if conf.Username != "" {
-		var resp *message.Message
+		var resp *Message
 		resp, err = c.Request(actions.LoginAction{
 			UserName: conf.Username,
 			Secret:   conf.Secret,
@@ -319,7 +318,7 @@ func Connect(addr string, opts ...ConnectOption) (conn *Conn, err error) {
 		ctx:     opt.Context,
 		conf:    opt,
 		logger:  opt.Logger,
-		recv:    make(chan *message.Message, 4096),
+		recv:    make(chan *Message, 4096),
 		pending: make(chan *asyncMsg, 100),
 		nextID: func() string {
 			return fmt.Sprint(atomic.AddUint64(&id, 1))

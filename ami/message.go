@@ -1,4 +1,4 @@
-package message
+package ami
 
 import (
 	"bufio"
@@ -121,10 +121,6 @@ func ConvertToMessage(in interface{}) (msg *Message, err error) {
 
 	msg.Attributes = m
 	return
-}
-
-func MustConvertToMessage(in interface{}) (msg *Message, err error) {
-	return ConvertToMessage(in)
 }
 
 func ReadMessage(m *Message, rd io.Reader) (err error) {
