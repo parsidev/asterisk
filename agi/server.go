@@ -16,7 +16,7 @@ type Server struct {
 	conf       *Options
 	logger     *zap.Logger
 	listener   net.Listener
-	cons       map[*conn]struct{}
+	cons       map[net.Conn]struct{}
 	mu         sync.Mutex
 	inShutdown bool
 	handlers   map[string]Route
@@ -78,27 +78,27 @@ func (srv *Server) ListenAndServe() {
 		}
 
 		if newConn, err := listener.Accept(); err == nil {
-			conn := &conn{
-				Conn:          newConn,
-				MaxReadBuffer: srv.conf.MaxReadBytes,
-			}
-			srv.trackConn(conn)
-			go srv.handle(conn)
+			//conn := &conn{
+			//	Conn:          newConn,
+			//	MaxReadBuffer: srv.conf.MaxReadBytes,
+			//}
+			srv.trackConn(newConn)
+			go srv.handle(newConn)
 		}
 	}
 	return
 }
 
-func (srv *Server) trackConn(c *conn) {
+func (srv *Server) trackConn(c net.Conn) {
 	defer srv.mu.Unlock()
 	srv.mu.Lock()
 	if srv.cons == nil {
-		srv.cons = make(map[*conn]struct{})
+		srv.cons = make(map[net.Conn]struct{})
 	}
 	srv.cons[c] = struct{}{}
 }
 
-func (srv *Server) handle(conn *conn) {
+func (srv *Server) handle(conn net.Conn) {
 	defer func() {
 		_ = conn.Close()
 		srv.deleteConn(conn)
@@ -139,7 +139,7 @@ func (srv *Server) handle(conn *conn) {
 	}
 }
 
-func (srv *Server) deleteConn(conn *conn) {
+func (srv *Server) deleteConn(conn net.Conn) {
 	defer srv.mu.Unlock()
 	srv.mu.Lock()
 	delete(srv.cons, conn)
