@@ -30,6 +30,7 @@ type ConnectOptions struct {
 		opts []SubscribeOption
 	}
 }
+
 type ConnectOption func(c *ConnectOptions) error
 
 func WithCustomDialer(dialer CustomDialer) ConnectOption {
