@@ -2,6 +2,7 @@ package agi
 
 import (
 	"bufio"
+	"fmt"
 	"net"
 	"time"
 )
@@ -33,5 +34,10 @@ func (c *conn) Close() (err error) {
 
 func (c *conn) updateDeadline() {
 	idleDeadline := time.Now().Add(c.IdleTimeout)
-	_ = c.Conn.SetDeadline(idleDeadline)
+	fmt.Println(c.IdleTimeout)
+	fmt.Println(idleDeadline)
+	err := c.Conn.SetDeadline(idleDeadline)
+	if err != nil {
+		fmt.Printf("Error on set deadline: %v\n", err.Error())
+	}
 }
