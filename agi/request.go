@@ -1,12 +1,14 @@
 package agi
 
 import (
+	"bufio"
 	"fmt"
 )
 
 type Request struct {
-	conn          *conn
 	srv           *Server
+	writer        *bufio.Writer
+	reader        *bufio.Reader
 	args          map[string]string
 	network       string
 	networkString string
@@ -33,7 +35,7 @@ type Request struct {
 }
 
 func (r *Request) SendCommand(command string) {
-	_, err := r.conn.Write([]byte(fmt.Sprintf("%s\n", command)))
+	_, err := r.writer.WriteString(fmt.Sprintf("%s\n", command))
 	if err != nil {
 		r.srv.logger.Error(err.Error())
 	}

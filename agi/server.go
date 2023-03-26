@@ -103,9 +103,9 @@ func (srv *Server) handle(conn *conn) {
 		_ = conn.Close()
 		srv.deleteConn(conn)
 	}()
-	conn.reader = bufio.NewReader(conn)
-	conn.writer = bufio.NewWriter(conn)
-	scanner := bufio.NewScanner(conn.reader)
+	r := bufio.NewReader(conn)
+	w := bufio.NewWriter(conn)
+	scanner := bufio.NewScanner(r)
 	var str strings.Builder
 
 	sc := make(chan bool)
@@ -122,7 +122,7 @@ func (srv *Server) handle(conn *conn) {
 				return
 			}
 			if scanner.Text() == "" {
-				request := Parse(str.String(), conn, srv)
+				request := Parse(str.String(), srv, w, r)
 
 				handler, isExist := srv.handlers[request.networkString]
 				if !isExist {
@@ -162,11 +162,12 @@ func (srv *Server) Shutdown() {
 	}
 }
 
-func Parse(text string, conn *conn, srv *Server) Request {
+func Parse(text string, srv *Server, w *bufio.Writer, r *bufio.Reader) Request {
 	request := Request{
-		conn: conn,
-		srv:  srv,
-		args: map[string]string{},
+		srv:    srv,
+		reader: r,
+		writer: w,
+		args:   map[string]string{},
 	}
 	lines := strings.Split(text, "\n")
 	for _, line := range lines {
