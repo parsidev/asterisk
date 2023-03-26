@@ -28,7 +28,6 @@ func NewServer(addr string, opts ...Option) (srv *Server, err error) {
 
 	opt := &Options{
 		Addr:         addr,
-		IdleTimeout:  10 * time.Second,
 		Logger:       zap.L(),
 		MaxReadBytes: 10 * 1024,
 	}
@@ -81,11 +80,9 @@ func (srv *Server) ListenAndServe() {
 		if newConn, err := listener.Accept(); err == nil {
 			conn := &conn{
 				Conn:          newConn,
-				IdleTimeout:   srv.conf.IdleTimeout,
 				MaxReadBuffer: srv.conf.MaxReadBytes,
 			}
 			srv.trackConn(conn)
-			_ = conn.SetDeadline(time.Now().Add(conn.IdleTimeout))
 			go srv.handle(conn)
 		}
 	}
